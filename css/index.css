@@ -1,0 +1,251 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   共通変数（カラーパレット・フォント）
+   ========================================================================== */
+:root {
+    --primary-color: #2c3e50;    /* 深みのある群青（ベースカラー） */
+    --accent-color: #c0392b;     /* 艶やかな漆赤（アクセントカラー） */
+    --bg-color: #f9f6f0;         /* 温かみのある鳥の子色（和風の白） */
+    --text-color: #333333;       /* 墨色に近いグレー */
+    --card-bg: #ffffff;          /* 純白 */
+}
+
+/* ==========================================================================
+   全体レイアウト
+   ========================================================================== */
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   ヘッダー（メインビジュアル部）
+   ========================================================================== */
+header {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 4rem 1rem;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 和風の繊細なラインアクセントをヘッダー下部に追加 */
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent-color);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+header p {
+    margin: 1.2rem 0 0 0;
+    font-size: 1.1rem;
+    opacity: 0.85;
+    letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   メインコンテンツ
+   ========================================================================== */
+main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+    font-size: 1.15rem;
+    color: #555555;
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+/* 紹介文の下にさりげない区切り線 */
+.intro::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background-color: #cccccc;
+}
+
+/* ==========================================================================
+   カードレイアウト（グリッドシステム）
+   ========================================================================== */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ホバー時の浮き上がるアニメーション */
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-content {
+    padding: 2.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ラベル・タグ */
+.card-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+}
+
+/* メンバーとリーダーでタグの色を微調整 */
+.card.member-site .card-tag {
+    color: var(--accent-color);
+    background-color: rgba(192, 57, 43, 0.08);
+}
+
+.card.leader-site .card-tag {
+    color: var(--primary-color);
+    background-color: rgba(44, 62, 80, 0.08);
+}
+
+/* カードの見出し */
+.card h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* カードの説明文 */
+.card p {
+    margin: 0 0 2.5rem 0;
+    color: #666666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* リンクボタン */
+.card-btn {
+    display: block;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.9rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.card-btn:hover {
+    background-color: #1a252f; /* 少し暗い群青 */
+}
+
+/* ==========================================================================
+   カードごとの個別アクセント（上部のカラーバー）
+   ========================================================================== */
+.card.member-site {
+    border-top: 5px solid var(--accent-color);
+}
+
+.card.member-site .card-btn {
+    background-color: var(--accent-color);
+}
+
+.card.member-site .card-btn:hover {
+    background-color: #a33024; /* 少し暗い漆赤 */
+}
+
+.card.leader-site {
+    border-top: 5px solid var(--primary-color);
+}
+
+/* ==========================================================================
+   フッター
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    margin-top: 8rem;
+    background-color: #ffffff;
+    border-top: 1px solid #e5e5e5;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #888888;
+    letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   レスポンシブ対応（画面幅が狭いスマホなどでの表示調整）
+   ========================================================================== */
+@media (max-width: 640px) {
+    header {
+        padding: 3rem 1rem;
+    }
+    header h1 {
+        font-size: 1.8rem;
+    }
+    header p {
+        font-size: 0.95rem;
+    }
+    main {
+        padding: 2.5rem 1.2rem;
+    }
+    .intro {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+    }
+    .card-container {
+        gap: 2rem;
+    }
+    .card-content {
+        padding: 1.8rem;
+    }
+}
