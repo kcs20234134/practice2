@@ -11,11 +11,11 @@ body {
     font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", Meiryo, sans-serif;
     line-height: 1.8;
     color: #333333;
-    background-color: #fcfbf9; /* 和紙をイメージした温かみのある白 */
+    background-color: #fcfbf9; /* 和紙風の背景色 */
 }
 
 .container {
-    max-width: 900px;
+    max-width: 940px;
     margin: 0 auto;
     padding: 60px 20px;
 }
@@ -55,7 +55,7 @@ body {
    レイアウト・共通セクション
 ------------------------------------------- */
 .content-section {
-    margin-bottom: 80px;
+    margin-bottom: 90px;
 }
 
 .content-section h1,
@@ -79,7 +79,7 @@ body {
     background-color: #ffffff;
     padding: 30px;
     margin-bottom: 25px;
-    border-left: 4px solid #c49a45; /* 金のアクセント */
+    border-left: 4px solid #c49a45;
     box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     border-radius: 0 4px 4px 0;
 }
@@ -91,11 +91,95 @@ body {
 }
 
 /* -------------------------------------------
-   セクション2：歴史（タイムライン構造）
+   追加：和菓子一覧（テーブル）
+------------------------------------------- */
+.table-wrapper {
+    overflow-x: auto; /* スマホ用横スクロール */
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    border: 1px solid #eee;
+}
+
+.wagashi-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.wagashi-table th {
+    background-color: #2b3a2a;
+    color: #ffffff;
+    padding: 15px 20px;
+    font-weight: 500;
+}
+
+.wagashi-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eeeeee;
+    color: #555555;
+}
+
+.wagashi-table tr:last-child td {
+    border-bottom: none;
+}
+
+.table-name {
+    font-weight: bold;
+    color: #2b3a2a;
+}
+
+/* -------------------------------------------
+   追加：二十四節気（グリッドレイアウト）
+------------------------------------------- */
+.season-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.season-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    position: relative;
+}
+
+.season-badge {
+    display: inline-block;
+    padding: 2px 12px;
+    font-size: 0.8rem;
+    color: #fff;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* 四季に応じたイメージカラー */
+.season-badge.spring { background-color: #e5989b; }
+.season-badge.summer { background-color: #64dfdf; color: #1a1a1a; }
+.season-badge.autumn { background-color: #dda15e; }
+.season-badge.winter { background-color: #a8dadc; color: #1a1a1a; }
+
+.season-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.season-card p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* -------------------------------------------
+   セクション：歴史（タイムライン構造）
 ------------------------------------------- */
 .timeline {
     position: relative;
-    border-left: 2px solid #2b3a2a; /* 抹茶色の縦線 */
+    border-left: 2px solid #2b3a2a;
     margin-left: 20px;
     padding-left: 30px;
 }
@@ -105,7 +189,6 @@ body {
     margin-bottom: 40px;
 }
 
-/* タイムラインの結合点（丸ぽち） */
 .timeline-item::before {
     content: '';
     position: absolute;
@@ -123,7 +206,6 @@ body {
     font-weight: bold;
     color: #c49a45;
     margin-bottom: 5px;
-    letter-spacing: 0.05em;
 }
 
 .timeline-content h3 {
@@ -135,14 +217,13 @@ body {
 .timeline-content p {
     font-size: 0.95rem;
     color: #555555;
-    text-align: justify;
 }
 
 /* -------------------------------------------
-   セクション3：五感の芸術（リスト）
+   セクション：五感の芸術（リスト）
 ------------------------------------------- */
 .art-section {
-    background-color: #f4f1eb; /* 薄い砂色 */
+    background-color: #f4f1eb;
     padding: 40px;
     border-radius: 6px;
 }
@@ -162,7 +243,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* リストの先頭の和風な丸印 */
 .art-list li::before {
     content: "・";
     position: absolute;
@@ -189,15 +269,12 @@ footer {
     .container {
         padding: 40px 20px;
     }
-    .sub-nav {
-        padding: 20px;
+    .content-section {
+        margin-bottom: 60px;
     }
-    .content-section h1,
-    .content-section h2 {
-        font-size: 1.6rem;
-    }
-    .category-box {
-        padding: 20px;
+    .season-grid {
+        grid-template-columns: 1fr; /* スマホでは1カラムに */
+        gap: 15px;
     }
     .timeline {
         margin-left: 10px;
@@ -205,8 +282,5 @@ footer {
     }
     .timeline-item::before {
         left: -27px;
-    }
-    .art-section {
-        padding: 25px 20px;
     }
 }
