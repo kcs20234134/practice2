@@ -7,17 +7,15 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth; /* スムーズスクロール有効化 */
+}
+
 body {
     font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", Meiryo, sans-serif;
     line-height: 1.8;
     color: #333333;
-    background-color: #fcfbf9; /* 和紙風の柔らかな白 */
-}
-
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 60px 20px;
+    background-color: #fcfbf9; /* 和紙風の背景色 */
 }
 
 /* -------------------------------------------
@@ -30,6 +28,9 @@ body {
     padding: 20px 40px;
     background-color: #ffffff;
     border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .nav-logo {
@@ -52,52 +53,135 @@ body {
 }
 
 /* -------------------------------------------
-   レイアウト・共通セクション
+   詳細ページ用メインビジュアル
 ------------------------------------------- */
-.content-section {
-    margin-bottom: 95px;
+.sub-hero {
+    background: linear-gradient(135deg, #2b3a2a 0%, #3a4d39 100%);
+    color: #ffffff;
+    padding: 60px 20px;
+    text-align: center;
 }
 
-.content-section h1,
+.sub-hero-inner h1 {
+    font-size: 2.2rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+.sub-hero-inner p {
+    font-size: 1rem;
+    color: #cccccc;
+    letter-spacing: 0.05em;
+}
+
+/* -------------------------------------------
+   レイアウト構造（2カラム構成）
+------------------------------------------- */
+.main-layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    gap: 50px;
+}
+
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.sticky-menu {
+    position: sticky;
+    top: 100px; /* ナビ下部に固定 */
+    background: #ffffff;
+    padding: 25px 20px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    border: 1px solid #eeeeee;
+}
+
+.sticky-menu h3 {
+    font-size: 1rem;
+    color: #2b3a2a;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #c49a45;
+}
+
+.sticky-menu ul {
+    list-style: none;
+}
+
+.sticky-menu ul li {
+    margin-bottom: 12px;
+}
+
+.sticky-menu ul li a {
+    font-size: 0.88rem;
+    color: #666666;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: block;
+}
+
+.sticky-menu ul li a:hover {
+    color: #c49a45;
+}
+
+.sub-content {
+    flex: 1;
+    min-width: 0; /* スクロール崩れ防止 */
+}
+
+/* -------------------------------------------
+   共通セクション設定
+------------------------------------------- */
+.content-section {
+    margin-bottom: 90px;
+}
+
 .content-section h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #2b3a2a;
     margin-bottom: 25px;
     letter-spacing: 0.05em;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 10px;
 }
 
 .lead {
     font-size: 1.05rem;
     color: #555555;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 /* -------------------------------------------
-   セクション1：種類と分類（カード）
+   1. 分類（カード）
 ------------------------------------------- */
 .category-box {
     background-color: #ffffff;
-    padding: 30px;
-    margin-bottom: 25px;
+    padding: 25px 30px;
+    margin-bottom: 20px;
     border-left: 4px solid #c49a45;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.01);
     border-radius: 0 4px 4px 0;
 }
 
-.category-box h2 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+.category-box h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
     color: #333333;
 }
 
 /* -------------------------------------------
-   セクション2：和菓子一覧（テーブル）
+   2. 一覧（テーブル）
 ------------------------------------------- */
 .table-wrapper {
     overflow-x: auto;
     background: #ffffff;
     border-radius: 4px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.01);
     border: 1px solid #eeeeee;
 }
 
@@ -128,22 +212,24 @@ body {
 .table-name {
     font-weight: bold;
     color: #2b3a2a;
+    white-space: nowrap;
 }
 
 /* -------------------------------------------
-   セクション3：二十四節気（グリッドレイアウト）
+   3. 二十四節気（グリッド）
 ------------------------------------------- */
 .season-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    gap: 20px;
 }
 
 .season-card {
     background: #ffffff;
-    padding: 30px;
+    padding: 25px;
     border-radius: 4px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+    border: 1px solid #f0edd2;
 }
 
 .season-badge {
@@ -162,74 +248,63 @@ body {
 .season-badge.winter { background-color: #a8dadc; color: #1a1a1a; }
 
 .season-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.15rem;
+    margin-bottom: 8px;
     color: #333;
 }
 
-.season-card p {
-    font-size: 0.95rem;
-    color: #666;
-}
-
 /* -------------------------------------------
-   新設セクション4：年中行事（リストスタイル）
+   4. 年中行事
 ------------------------------------------- */
 .event-grid {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .event-item {
     background-color: #ffffff;
     padding: 25px;
     border-radius: 4px;
-    border: 1px solid #eee;
+    border: 1px solid #eeeeee;
 }
 
 .event-item h4 {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: #2b3a2a;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
 }
 
 .event-item h4 span {
     font-family: 'Georgia', serif;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #c49a45;
     margin-right: 15px;
-    font-weight: 300;
-}
-
-.event-item p {
-    font-size: 0.95rem;
-    color: #555555;
 }
 
 /* -------------------------------------------
-   新設セクション5：三大素材（3カラム）
+   5. 三大素材（3カラム）
 ------------------------------------------- */
 .material-container {
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 
 .material-block {
     flex: 1;
     background-color: #ffffff;
-    padding: 25px;
+    padding: 20px;
     border-radius: 4px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    border-top: 2px solid #c49a45;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+    border-top: 3px solid #2b3a2a;
 }
 
 .material-block h3 {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: #333;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .material-block p {
@@ -238,61 +313,56 @@ body {
 }
 
 /* -------------------------------------------
-   セクション6：歴史（タイムライン構造）
+   6. 歴史（タイムライン）
 ------------------------------------------- */
 .timeline {
     position: relative;
     border-left: 2px solid #2b3a2a;
-    margin-left: 20px;
-    padding-left: 30px;
+    margin-left: 15px;
+    padding-left: 25px;
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: -41px;
-    top: 5px;
-    width: 10px;
-    height: 10px;
+    left: -32px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
     background-color: #fcfbf9;
     border: 3px solid #c49a45;
     border-radius: 50%;
 }
 
 .timeline-era {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: bold;
     color: #c49a45;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 .timeline-content h3 {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     color: #333333;
-    margin-bottom: 10px;
-}
-
-.timeline-content p {
-    font-size: 0.95rem;
-    color: #555555;
+    margin-bottom: 8px;
 }
 
 /* -------------------------------------------
-   セクション7：五感の芸術（囲み枠）
+   7. 五感の芸術
 ------------------------------------------- */
 .art-section {
-    background-color: #f4f1eb; /* 落ち着いた砂色 */
-    padding: 40px;
-    border-radius: 6px;
+    background-color: #f3efe6; /* 落ち着いた和風のベージュ */
+    padding: 35px;
+    border-radius: 4px;
 }
 
 .art-section p {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .art-list {
@@ -301,38 +371,34 @@ body {
 
 .art-list li {
     position: relative;
-    padding-left: 25px;
-    margin-bottom: 15px;
+    padding-left: 20px;
+    margin-bottom: 12px;
     font-size: 0.95rem;
 }
 
 .art-list li::before {
     content: "・";
     position: absolute;
-    left: 5px;
+    left: 0;
     color: #c49a45;
     font-weight: bold;
 }
 
 /* -------------------------------------------
-   新設セクション8：マナー（下部ハイライト）
+   8. マナー（下部ハイライト）
 ------------------------------------------- */
 .layer-box {
     background-color: #ffffff;
     border: 1px dashed #c49a45;
-    padding: 35px;
+    padding: 30px;
     border-radius: 4px;
 }
 
-.layer-box h3 {
-    color: #2b3a2a;
+.layer-box h2 {
+    font-size: 1.4rem;
+    border-bottom: none;
+    padding-bottom: 0;
     margin-bottom: 15px;
-    font-size: 1.3rem;
-}
-
-.layer-box p {
-    font-size: 0.95rem;
-    color: #555555;
 }
 
 /* -------------------------------------------
@@ -342,19 +408,35 @@ footer {
     background-color: #1a1a1a;
     color: #888888;
     text-align: center;
-    padding: 30px 20px;
+    padding: 25px 20px;
     font-size: 0.85rem;
 }
 
 /* -------------------------------------------
-   レスポンシブ（スマホ対応）
+   レスポンシブ（スマホ・タブレット対応）
 ------------------------------------------- */
-@media (max-width: 768px) {
-    .container {
+@media (max-width: 900px) {
+    .main-layout {
+        flex-direction: column; /* 縦並びにしてサイドバーを非表示にする */
         padding: 40px 20px;
     }
+    .sidebar {
+        display: none; /* スマホ時は目次を非表示に */
+    }
+}
+
+@media (max-width: 768px) {
+    .sub-nav {
+        padding: 15px 20px;
+    }
+    .sub-hero h1 {
+        font-size: 1.7rem;
+    }
     .content-section {
-        margin-bottom: 70px;
+        margin-bottom: 60px;
+    }
+    .content-section h2 {
+        font-size: 1.5rem;
     }
     .season-grid {
         grid-template-columns: 1fr;
@@ -362,13 +444,6 @@ footer {
     .material-container {
         flex-direction: column;
         gap: 15px;
-    }
-    .timeline {
-        margin-left: 10px;
-        padding-left: 20px;
-    }
-    .timeline-item::before {
-        left: -27px;
     }
     .art-section, .layer-box {
         padding: 25px 20px;
