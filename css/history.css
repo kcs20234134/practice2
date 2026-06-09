@@ -11,11 +11,11 @@ body {
     font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", Meiryo, sans-serif;
     line-height: 1.8;
     color: #333333;
-    background-color: #fcfbf9; /* 和紙風の背景色 */
+    background-color: #fcfbf9; /* 和紙風の柔らかな白 */
 }
 
 .container {
-    max-width: 940px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 60px 20px;
 }
@@ -55,14 +55,14 @@ body {
    レイアウト・共通セクション
 ------------------------------------------- */
 .content-section {
-    margin-bottom: 90px;
+    margin-bottom: 95px;
 }
 
 .content-section h1,
 .content-section h2 {
     font-size: 2rem;
     color: #2b3a2a;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     letter-spacing: 0.05em;
 }
 
@@ -91,14 +91,14 @@ body {
 }
 
 /* -------------------------------------------
-   追加：和菓子一覧（テーブル）
+   セクション2：和菓子一覧（テーブル）
 ------------------------------------------- */
 .table-wrapper {
-    overflow-x: auto; /* スマホ用横スクロール */
+    overflow-x: auto;
     background: #ffffff;
     border-radius: 4px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    border: 1px solid #eee;
+    border: 1px solid #eeeeee;
 }
 
 .wagashi-table {
@@ -131,7 +131,7 @@ body {
 }
 
 /* -------------------------------------------
-   追加：二十四節気（グリッドレイアウト）
+   セクション3：二十四節気（グリッドレイアウト）
 ------------------------------------------- */
 .season-grid {
     display: grid;
@@ -144,7 +144,6 @@ body {
     padding: 30px;
     border-radius: 4px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    position: relative;
 }
 
 .season-badge {
@@ -157,7 +156,6 @@ body {
     font-weight: bold;
 }
 
-/* 四季に応じたイメージカラー */
 .season-badge.spring { background-color: #e5989b; }
 .season-badge.summer { background-color: #64dfdf; color: #1a1a1a; }
 .season-badge.autumn { background-color: #dda15e; }
@@ -175,7 +173,72 @@ body {
 }
 
 /* -------------------------------------------
-   セクション：歴史（タイムライン構造）
+   新設セクション4：年中行事（リストスタイル）
+------------------------------------------- */
+.event-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.event-item {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.event-item h4 {
+    font-size: 1.15rem;
+    color: #2b3a2a;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.event-item h4 span {
+    font-family: 'Georgia', serif;
+    font-size: 1.5rem;
+    color: #c49a45;
+    margin-right: 15px;
+    font-weight: 300;
+}
+
+.event-item p {
+    font-size: 0.95rem;
+    color: #555555;
+}
+
+/* -------------------------------------------
+   新設セクション5：三大素材（3カラム）
+------------------------------------------- */
+.material-container {
+    display: flex;
+    gap: 20px;
+}
+
+.material-block {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    border-top: 2px solid #c49a45;
+}
+
+.material-block h3 {
+    font-size: 1.15rem;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.material-block p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* -------------------------------------------
+   セクション6：歴史（タイムライン構造）
 ------------------------------------------- */
 .timeline {
     position: relative;
@@ -220,10 +283,10 @@ body {
 }
 
 /* -------------------------------------------
-   セクション：五感の芸術（リスト）
+   セクション7：五感の芸術（囲み枠）
 ------------------------------------------- */
 .art-section {
-    background-color: #f4f1eb;
+    background-color: #f4f1eb; /* 落ち着いた砂色 */
     padding: 40px;
     border-radius: 6px;
 }
@@ -252,6 +315,27 @@ body {
 }
 
 /* -------------------------------------------
+   新設セクション8：マナー（下部ハイライト）
+------------------------------------------- */
+.layer-box {
+    background-color: #ffffff;
+    border: 1px dashed #c49a45;
+    padding: 35px;
+    border-radius: 4px;
+}
+
+.layer-box h3 {
+    color: #2b3a2a;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.layer-box p {
+    font-size: 0.95rem;
+    color: #555555;
+}
+
+/* -------------------------------------------
    フッター
 ------------------------------------------- */
 footer {
@@ -270,10 +354,13 @@ footer {
         padding: 40px 20px;
     }
     .content-section {
-        margin-bottom: 60px;
+        margin-bottom: 70px;
     }
     .season-grid {
-        grid-template-columns: 1fr; /* スマホでは1カラムに */
+        grid-template-columns: 1fr;
+    }
+    .material-container {
+        flex-direction: column;
         gap: 15px;
     }
     .timeline {
@@ -282,5 +369,8 @@ footer {
     }
     .timeline-item::before {
         left: -27px;
+    }
+    .art-section, .layer-box {
+        padding: 25px 20px;
     }
 }
